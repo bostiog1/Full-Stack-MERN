@@ -1,9 +1,8 @@
-function App() {
-  return (
-    <div>
-      <h1>test</h1>
-    </div>
-  );
-}
+import { Container } from "@mui/material-ui/core";
+const App = () => {
+  return <Container>
+    
+  </Container>;
+};
 
 export default App;
