@@ -99,7 +99,9 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           sx={{ m: 1 }}
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          onChange={(e) =>
+            setPostData({ ...postData, tags: e.target.value.split(",") })
+          }
         />
         <div style={{ width: "97%", margin: "10px 0" }}>
           <input
