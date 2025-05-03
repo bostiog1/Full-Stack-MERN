@@ -1,9 +1,9 @@
 import { TextField, Button, Typography, Paper } from "@mui/material";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../actions/posts";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -11,16 +11,31 @@ const Form = () => {
     tags: "",
     selectedFile: "",
   });
-
   const dispatch = useDispatch();
+
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+    } else {
+      dispatch(createPost(postData));
+    }
+
+    clear();
+
     console.log(postData);
-    dispatch(createPost(postData));
   };
 
   const clear = () => {
+    setCurrentId(null);
     setPostData({
       creator: "",
       title: "",
@@ -42,7 +57,10 @@ const Form = () => {
           justifyContent: "center",
         }}
       >
-        <Typography variant="h6">Create a Memory</Typography>
+        <Typography variant="h6">
+          {" "}
+          {currentId ? "Editing" : "Creating"} a Memory
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"
