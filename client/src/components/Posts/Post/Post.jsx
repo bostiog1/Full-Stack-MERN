@@ -96,10 +96,10 @@ const Post = ({ post, setCurrentId }) => {
             marginRight: 1,
           }}
         >
-          {post.creator ? post.creator.charAt(0).toUpperCase() : "?"}
+          {post.name ? post.name.charAt(0).toUpperCase() : "?"}
         </Avatar>
         <Typography variant="body2" sx={{ color: "white", fontWeight: 500 }}>
-          {post.creator}
+          {post.name}
         </Typography>
       </Box>
 

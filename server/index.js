@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import postsRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 dotenv.config();
@@ -12,7 +13,9 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(cors());
 app.use(cors({ origin: "http://localhost:5173" }));
+
 app.use("/posts", postsRoutes);
+app.use("/user", userRoutes);
 
 // const CONNECTION_URL =
 // "mongodb+srv://teooboost:teooboost123@cluster0.sgd0sce.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";

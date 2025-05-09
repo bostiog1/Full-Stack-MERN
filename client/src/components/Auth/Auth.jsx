@@ -9,24 +9,45 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Input } from "./Input";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
+import { signIn, signUp } from "../../actions/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export const Auth = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   const [isSignUp, setIsSignUp] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const { loginWithRedirect } = useAuth0();
 
   const handleShowPassword = () => setShowPassword((prev) => !prev);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted (traditional login/signup)");
+
+    if (isSignUp) {
+      dispatch(signUp(formData, navigate));
+    } else {
+      dispatch(signIn(formData, navigate));
+    }
   };
 
   const handleChange = (e) => {
-    console.log("Input changed:", e.target.name, e.target.value);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // console.log("Input changed:", formData);
   };
 
   const swithcMode = () => {
