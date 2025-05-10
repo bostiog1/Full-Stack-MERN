@@ -25,3 +25,6 @@ export const deletePost = (id) => API.delete(`posts/${id}`);
 
 export const signIn = (formData) => API.post("/user/signIn", formData);
 export const signUp = (formData) => API.post("/user/signUp", formData);
+
+export const auth0SignInBackend = (auth0UserData) =>
+  API.post("/user/auth0SignIn", auth0UserData);
