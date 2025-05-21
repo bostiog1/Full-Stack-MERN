@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack, inspired by the "Memories" application tutorial from JavaScript Mastery. It serves as a platform for users to share and discover "memories" – short posts that can include text, tags, and an accompanying image. The application emphasizes a modern, responsive user interface and robust backend functionalities.
+This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack. It serves as a platform for users to share and discover "memories" – short posts that can include text, tags, and an accompanying image. The application emphasizes a modern, responsive user interface and robust backend functionalities.
 
 The primary goal of this project is to provide a practical demonstration of building a complete MERN stack application, covering essential concepts such as user authentication, CRUD operations, state management with Redux, and responsive design with Material-UI.
 
@@ -16,7 +16,7 @@ The primary goal of this project is to provide a practical demonstration of buil
 * **User Authentication & Authorization:**
     * Secure sign-up and login functionalities.
     * Users can log in using email/password or Google OAuth.
-    * Protected routes ensure only authenticated users can perform certain actions (e.g., liking, editing, deleting posts).
+    * Protected routes ensure only authenticated users can perform certain actions (e.g., liking, editing, and deleting posts).
     * JWT-based authentication for secure session management.
 * **Like Functionality:**
     * Authenticated users can like posts.
@@ -30,9 +30,9 @@ The primary goal of this project is to provide a practical demonstration of buil
     * Users can search for posts by title or message content.
     * Users can filter posts by tags.
 * **Responsive Design:**
-    * The application is designed to be fully responsive, providing an optimal viewing experience across various devices (desktops, tablets, and mobile phones) using Material-UI.
+    * The application is designed to be fully responsive, using Material-UI to provide an optimal viewing experience across various devices (desktops, tablets, and mobile phones).
 * **Pagination:**
-    * Efficiently loads posts in chunks to improve performance and user experience when dealing with a large number of memories.
+    * Efficiently loads posts in chunks to improve performance and user experience when dealing with many memories.
 
 ## Technologies
 
@@ -46,7 +46,7 @@ The primary goal of this project is to provide a practical demonstration of buil
 
 ### Backend:
 
-* **Node.js:** JavaScript runtime for building the server-side application.
+* **Node.js:** JavaScript runtime for building server-side applications.
 * **Express.js:** A fast, unopinionated, minimalist web framework for Node.js, used for building RESTful APIs.
 * **Mongoose:** An ODM (Object Data Modeling) library for MongoDB and Node.js, simplifying database interactions.
 * **JSON Web Token (JWT):** For secure user authentication and authorization.
@@ -72,8 +72,8 @@ Follow these steps to get the Memories application running on your local machine
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url> # Replace with the actual repository URL if available
-    cd memories-project # Or whatever the project folder is named
+    git clone https://github.com/bostiog1/Full-Stack-MERN.git 
+    cd fullstack mern 
     ```
 
 2.  **Navigate into the `server` directory and install dependencies:**
@@ -108,8 +108,8 @@ Follow these steps to get the Memories application running on your local machine
 2.  **Start the Frontend Development Server:**
     From the `client` directory:
     ```bash
-    npm start
+    npm run dev
     ```
-    The frontend application will typically open in your browser at `http://localhost:3000`.
+    The frontend application will typically open in your browser at `http://localhost:5173`.
 
 You should now have the Memories application running locally!
