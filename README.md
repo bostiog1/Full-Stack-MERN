@@ -1,4 +1,4 @@
-# Memories MERN Stack Application
+# FullStack MERN Application
 
 ## Overview
 
