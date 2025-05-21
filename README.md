@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack. It serves as a platform for users to share and discover "memories" – short posts that can include text, tags, and an accompanying image. The application emphasizes a modern, responsive user interface and robust backend functionalities.
+This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack. 
+
+It serves as a platform for users to share and discover "memories" – short posts that can include text, tags, and an accompanying image. The application emphasizes a modern, responsive user interface and robust backend functionalities.
 
 The primary goal of this project is to provide a practical demonstration of building a complete MERN stack application, covering essential concepts such as user authentication, CRUD operations, state management with Redux, and responsive design with Material-UI.
 
@@ -26,7 +28,7 @@ The primary goal of this project is to provide a practical demonstration of buil
     * Seamless image upload for memory posts, supporting base64 conversion for storage.
 * **Tagging System:**
     * Posts can be categorized using tags, making them searchable and discoverable.
-* **Search & Filtering:**
+* **Search & Filtering:** (WIP)
     * Users can search for posts by title or message content.
     * Users can filter posts by tags.
 * **Responsive Design:**
@@ -38,7 +40,7 @@ The primary goal of this project is to provide a practical demonstration of buil
 
 ### Frontend:
 
-* **React:** For building dynamic and interactive user interface components.
+* **Vite:** For building dynamic and interactive user interface components.
 * **Redux:** For centralized state management, making data flow predictable and easier to debug.
 * **Redux Thunk:** Middleware for Redux, enabling asynchronous actions (e.g., API calls).
 * **Material-UI (MUI):** A popular React UI framework for creating modern and responsive designs.
