@@ -15,7 +15,6 @@ export const Home = () => {
 
   return (
     <>
-      {/* Main Content */}
       <Box
         sx={{
           display: "flex",

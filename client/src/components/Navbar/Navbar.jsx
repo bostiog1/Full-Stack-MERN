@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Toolbar, Typography } from "@mui/material";
-import memories from "../../../public/assets/memories.png"; // Make sure this path is correct
+import memories from "../../../public/assets/memories.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ export const Navbar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         p: 3,
-        mb: 4,
+        mb: 2,
         background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
         borderRadius: 2,
         boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
