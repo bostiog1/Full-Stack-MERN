@@ -1,10 +1,17 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, AppBar, TextField, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import { useDispatch } from "react-redux";
 import { getPosts } from "../../actions/posts";
 import Pagination from "../Pagination";
+import { useHistory, useLocation } from "react-router-dom";
+import ChipInput from "@mui/material";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 
 export const Home = () => {
   const [currentId, setCurrentId] = useState(0);
