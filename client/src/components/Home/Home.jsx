@@ -1,9 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import { useDispatch } from "react-redux";
 import { getPosts } from "../../actions/posts";
+import Pagination from "../Pagination";
 
 export const Home = () => {
   const [currentId, setCurrentId] = useState(0);
@@ -35,6 +36,9 @@ export const Home = () => {
           }}
         >
           <Form currentId={currentId} setCurrentId={setCurrentId} />
+          <Paper elevation={6}>
+            <Pagination />
+          </Paper>
         </Box>
       </Box>
     </>
