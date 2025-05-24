@@ -5,17 +5,23 @@ import Form from "../Form/Form";
 import { useDispatch } from "react-redux";
 import { getPosts } from "../../actions/posts";
 import Pagination from "../Pagination";
-import { useHistory, useLocation } from "react-router-dom";
-import ChipInput from "@mui/material";
+// import { useHistory, useLocation } from "react-router-dom";
+// import ChipInput from "@mui/material";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+// function useQuery() {
+//   return new URLSearchParams(useLocation().search);
+// }
 
 
 export const Home = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
+
+  // const query = useQuery();
+  // const history = useHistory();
+  // const page = query.get("page") || 1;
+  // const searchQuery = query.get("searchQuery") || "";
+
 
   useEffect(() => {
     dispatch(getPosts());
