@@ -2,6 +2,7 @@ import {
   CREATE,
   DELETE,
   FETCH_ALL,
+  FETCH_BY_SEARCH,
   LIKE,
   UPDATE,
 } from "../constants/actionTypes";
@@ -10,6 +11,8 @@ const reducer = (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
       return action.payload;
+    case FETCH_BY_SEARCH:
+      return action.payload.data;
     case CREATE:
       return [...posts, action.payload];
     case UPDATE:
