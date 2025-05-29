@@ -20,6 +20,7 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -32,9 +33,12 @@ const Form = ({ currentId, setCurrentId }) => {
   const [tagInput, setTagInput] = useState("");
   const [tagsArray, setTagsArray] = useState([]);
   const [previewUrl, setPreviewUrl] = useState("");
+  const navigate = useNavigate();
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
+    currentId
+      ? state.posts.posts.find((message) => message._id === currentId)
+      : null
   );
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -89,14 +93,8 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const finalPostData = {
-      ...postData,
-      tags: tagsArray,
-      name: user?.result?.name,
-    };
-
-    if (!currentId) {
-      dispatch(createPost(finalPostData));
+    if (currentId === 0) {
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
       clear();
     } else {
       dispatch(updatePost(currentId, finalPostData));
