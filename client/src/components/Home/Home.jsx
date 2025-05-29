@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Pagination from "../Pagination";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ const Home = () => {
   const query = useQuery();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
+  const { numberOfPages } = useSelector((state) => state.posts);
 
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
@@ -154,7 +155,7 @@ const Home = () => {
           <Form currentId={currentId} setCurrentId={setCurrentId} />
 
           {/* Only show pagination if not in a search query result */}
-          {!searchQuery && !tags.length && (
+          {!searchQuery && !tags.length && numberOfPages > 1 && (
             <Paper sx={homeStyles.pagination} elevation={6}>
               <Pagination page={page} />
             </Paper>

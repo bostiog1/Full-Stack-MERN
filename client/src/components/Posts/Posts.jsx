@@ -14,10 +14,12 @@ import Post from "./Post/Post";
 import { useState, useEffect } from "react";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useNavigate } from "react-router-dom";
 
 const Posts = ({ setCurrentId }) => {
   const { posts } = useSelector((state) => state.posts);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isMedium = useMediaQuery(theme.breakpoints.between("sm", "md"));
@@ -45,11 +47,9 @@ const Posts = ({ setCurrentId }) => {
       <Container maxWidth="xl" sx={{ py: 4 }}>
         <Grid container spacing={2}>
           {" "}
-          {/* Reduced spacing between items */}
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={item}>
               {" "}
-              {/* Added lg={3} for 4 columns */}
               <Box
                 sx={{
                   height: "100%",
@@ -59,10 +59,8 @@ const Posts = ({ setCurrentId }) => {
                 }}
               >
                 <Skeleton variant="rectangular" height={150} animation="wave" />{" "}
-                {/* Reduced height */}
                 <Box sx={{ p: 1.5 }}>
                   {" "}
-                  {/* Reduced padding */}
                   <Skeleton
                     variant="text"
                     height={30}
@@ -70,7 +68,6 @@ const Posts = ({ setCurrentId }) => {
                     animation="wave"
                   />
                   <Skeleton variant="text" height={15} animation="wave" />{" "}
-                  {/* Smaller skeleton */}
                   <Skeleton
                     variant="text"
                     height={15}
@@ -79,7 +76,6 @@ const Posts = ({ setCurrentId }) => {
                   />
                   <Box sx={{ display: "flex", gap: 0.5, mt: 1 }}>
                     {" "}
-                    {/* Reduced gap */}
                     <Skeleton
                       variant="rectangular"
                       width={50}
@@ -135,7 +131,7 @@ const Posts = ({ setCurrentId }) => {
   }
 
   // Empty state with improved UI
-  if (!posts?.length && !isLoading) {
+  if (!posts.length && !isLoading) {
     return (
       <Box
         sx={{
@@ -217,8 +213,19 @@ const Posts = ({ setCurrentId }) => {
             }
           }}
         >
-          <AddCircleOutlineIcon sx={{ mr: 1 }} />
-          <Typography variant="button">Add Memory</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onClick={() => {
+              navigate("/auth");
+            }}
+          >
+            <AddCircleOutlineIcon sx={{ mr: 1 }} />
+            <Typography variant="button">Add Memory</Typography>
+          </Box>
         </Box>
       </Box>
     );

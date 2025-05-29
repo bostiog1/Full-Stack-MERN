@@ -5,6 +5,9 @@ const FETCH_ALL = "FETCH_ALL";
 const FETCH_BY_SEARCH = "FETCH_BY_SEARCH";
 const LIKE = "LIKE";
 
+const START_LOADING = "START_LOADING";
+const END_LOADING = "END_LOADING";
+
 const AUTH = "AUTH";
 const LOGOUT = "LOGOUT";
 
@@ -17,4 +20,6 @@ export {
   LIKE,
   AUTH,
   LOGOUT,
+  START_LOADING,
+  END_LOADING,
 };
