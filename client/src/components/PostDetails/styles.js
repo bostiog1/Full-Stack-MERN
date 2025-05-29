@@ -1,0 +1,46 @@
+const postStyles = {
+  media: {
+    borderRadius: "20px",
+    objectFit: "cover",
+    width: "100%",
+    maxHeight: "600px",
+  },
+  card: {
+    display: "flex",
+    width: "100%",
+    // Using a direct media query for small screens
+    "@media (max-width: 600px)": {
+      flexWrap: "wrap",
+      flexDirection: "column",
+    },
+  },
+  section: {
+    borderRadius: "20px",
+    margin: "10px",
+    flex: 1,
+  },
+  imageSection: {
+    marginLeft: "20px",
+    // Using a direct media query for small screens
+    "@media (max-width: 600px)": {
+      marginLeft: 0,
+    },
+  },
+  recommendedPosts: {
+    display: "flex",
+    // Using a direct media query for small screens
+    "@media (max-width: 600px)": {
+      flexDirection: "column",
+    },
+  },
+  loadingPaper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+    borderRadius: "15px",
+    height: "39vh",
+  },
+};
+
+export default postStyles;
