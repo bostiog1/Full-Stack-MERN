@@ -9,23 +9,15 @@ import {
 } from "../constants/actionTypes";
 
 // Action Creators
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts();
+    const { data } = await api.fetchPosts(page);
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPostsByCreator = (name) => async (dispatch) => {
-  try {
-    const { data } = await api.fetchPostsByCreator(name);
-    dispatch({ type: FETCH_ALL, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
   try {

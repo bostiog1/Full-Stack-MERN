@@ -16,7 +16,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const Posts = ({ setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
   const [isLoading, setIsLoading] = useState(true);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -135,7 +135,7 @@ const Posts = ({ setCurrentId }) => {
   }
 
   // Empty state with improved UI
-  if (!posts.length && !isLoading) {
+  if (!posts?.length && !isLoading) {
     return (
       <Box
         sx={{

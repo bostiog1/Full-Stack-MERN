@@ -48,7 +48,7 @@ export const Navbar = () => {
         alignItems: "center",
         p: 3,
         mb: 2,
-        background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+        background: "linear-gradient(135deg, #6a11cb 0%,rgb(98, 152, 244) 100%)",
         borderRadius: 2,
         boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
       }}

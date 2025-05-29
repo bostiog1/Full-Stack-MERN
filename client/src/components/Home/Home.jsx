@@ -15,7 +15,7 @@ import { getPosts, getPostsBySearch } from "../../actions/posts";
 import Pagination from "../Pagination";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import homeStyles from "./styles"; 
+import homeStyles from "./styles";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -31,7 +31,7 @@ const Home = () => {
 
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
-  const [newTagInput, setNewTagInput] = useState(""); 
+  const [newTagInput, setNewTagInput] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,8 +64,8 @@ const Home = () => {
         // Prevent duplicate tags
         setTags([...tags, trimmedTag]);
       }
-      setNewTagInput(""); 
-      e.preventDefault(); 
+      setNewTagInput("");
+      e.preventDefault();
     }
   };
 
@@ -82,7 +82,7 @@ const Home = () => {
           flex: 1,
         }}
       >
-        <Box sx={{ flex: 2 }}>
+        <Box sx={{ flex: 3 }}>
           <Posts setCurrentId={setCurrentId} />
         </Box>
         <Box
@@ -107,7 +107,7 @@ const Home = () => {
               fullWidth
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              sx={{ mb: 1 }} 
+              sx={{ mb: 1 }}
             />
 
             {/* Tag Input TextField */}
@@ -127,7 +127,7 @@ const Home = () => {
               <Stack
                 direction="row"
                 spacing={1}
-                sx={{ flexWrap: "wrap", mb: 1.5 }} 
+                sx={{ flexWrap: "wrap", mb: 1.5 }}
               >
                 {tags.map((tag) => (
                   <Chip
