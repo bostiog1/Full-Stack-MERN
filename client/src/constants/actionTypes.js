@@ -1,6 +1,7 @@
 const CREATE = "CREATE";
 const UPDATE = "UPDATE";
 const DELETE = "DELETE";
+const FETCH_POST = "FETCH_POST";
 const FETCH_ALL = "FETCH_ALL";
 const FETCH_BY_SEARCH = "FETCH_BY_SEARCH";
 const LIKE = "LIKE";
@@ -15,6 +16,7 @@ export {
   CREATE,
   UPDATE,
   DELETE,
+  FETCH_POST,
   FETCH_ALL,
   FETCH_BY_SEARCH,
   LIKE,

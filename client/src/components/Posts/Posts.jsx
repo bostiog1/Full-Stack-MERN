@@ -16,7 +16,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useNavigate } from "react-router-dom";
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId, refreshPosts, page }) => {
   const { posts } = useSelector((state) => state.posts);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -253,7 +253,12 @@ const Posts = ({ setCurrentId }) => {
             <Grid item xs={12} sm={6} md={4} lg={3}>
               {" "}
               {/* Added lg={3} for 4 columns on large screens */}
-              <Post post={post} setCurrentId={setCurrentId} />
+              <Post
+                post={post}
+                setCurrentId={setCurrentId}
+                refreshPosts={refreshPosts}
+                page={page}
+              />{" "}
             </Grid>
           </Fade>
         ))}
