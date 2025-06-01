@@ -143,7 +143,7 @@ const PostDetails = () => {
           <img
             style={{
               width: "100%",
-              height: "auto",
+              height: "400px",
               borderRadius: "8px",
               objectFit: "cover",
             }}
@@ -175,7 +175,7 @@ const PostDetails = () => {
               gap: "20px",
             }}
           >
-            {recommendedPosts.map(
+            {recommendedPosts.slice(0, 4).map(
               ({ title, name, message, likes, selectedFile, _id }) => (
                 <div
                   key={_id}

@@ -122,6 +122,7 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
           boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
         },
         height: "100%", // Ensure consistent height
+        width: "250px",
         display: "flex",
         flexDirection: "column",
       }}
