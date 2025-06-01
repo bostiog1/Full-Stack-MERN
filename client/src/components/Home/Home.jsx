@@ -801,7 +801,7 @@ const Home = () => {
         }}
       >
         {/* Posts Section */}
-        <Box sx={{ flex: 3 }}>
+        <Box sx={{ flex: 4 }}>
           <Posts setCurrentId={setCurrentId} refreshPosts={refreshPosts} />
         </Box>
 
