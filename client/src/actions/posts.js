@@ -9,6 +9,7 @@ import {
   UPDATE,
   START_LOADING,
   END_LOADING,
+  COMMENT,
 } from "../constants/actionTypes";
 
 // Action Creators
@@ -58,9 +59,9 @@ export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
-    
+
     dispatch({ type: CREATE, payload: data });
-    
+
     navigate(`/posts/${data._id}`);
     dispatch({ type: END_LOADING });
   } catch (error) {
@@ -96,5 +97,19 @@ export const likePost = (id) => async (dispatch) => {
     dispatch({ type: LIKE, payload: data });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const commentPost = (value, id) => async (dispatch) => {
+  try {
+    const { data } = await api.commentPost(value, id);
+
+    dispatch({ type: COMMENT, payload: data });
+
+    // return data.comments;
+    return Array.isArray(data.comments) ? data.comments : [];
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 };

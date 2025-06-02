@@ -26,6 +26,7 @@ import { Stack } from "@mui/material";
 
 import postStyles from "./styles";
 import { getPost } from "../../actions/posts";
+import CommentSection from "./CommentSection";
 
 const PostDetails = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
@@ -133,9 +134,7 @@ const PostDetails = () => {
           </Typography>
 
           {/* Comments */}
-          <Typography variant="body1">
-            <strong>Comments - coming soon!</strong>
-          </Typography>
+          <CommentSection post={post} />
         </div>
 
         {/* Right Side - 40% */}
@@ -144,8 +143,9 @@ const PostDetails = () => {
             style={{
               width: "100%",
               height: "400px",
-              borderRadius: "8px",
+              borderRadius: "25px",
               objectFit: "cover",
+              padding: "15px",
             }}
             src={
               post.selectedFile ||
@@ -175,8 +175,9 @@ const PostDetails = () => {
               gap: "20px",
             }}
           >
-            {recommendedPosts.slice(0, 4).map(
-              ({ title, name, message, likes, selectedFile, _id }) => (
+            {recommendedPosts
+              .slice(0, 4)
+              .map(({ title, name, message, likes, selectedFile, _id }) => (
                 <div
                   key={_id}
                   style={{
@@ -239,8 +240,7 @@ const PostDetails = () => {
                     </Typography>
                   </div>
                 </div>
-              )
-            )}
+              ))}
           </div>
         </div>
       )}
