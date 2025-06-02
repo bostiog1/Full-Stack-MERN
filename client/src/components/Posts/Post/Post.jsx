@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardActions,
@@ -32,6 +32,16 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const navigate = useNavigate();
 
+  // New: Local state for likes, initialized from post.likes prop
+  const [likes, setLikes] = useState(
+    Array.isArray(post.likes) ? post.likes : []
+  );
+
+  // New: Sync local 'likes' state with 'post.likes' prop whenever the prop changes
+  useEffect(() => {
+    setLikes(Array.isArray(post.likes) ? post.likes : []);
+  }, [post.likes]);
+
   const openPost = () => {
     navigate(`/posts/${post._id}`);
   };
@@ -41,7 +51,7 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
 
   const handleConfirmDelete = () => {
     try {
-      dispatch(deletePost(post._id)); 
+      dispatch(deletePost(post._id));
       setDeleteModalOpen(false);
 
       // Call the callback from Home.jsx to refresh posts for the current page
@@ -59,7 +69,38 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
   //   setDeleteModalOpen(false);
   // };
 
-  const handleLikeClick = () => dispatch(likePost(post._id));
+  // const handleLikeClick = () => dispatch(likePost(post._id));
+  const handleLikeClick = async (e) => {
+    e.stopPropagation(); // Prevents navigation if the button is within a clickable area
+    if (!user?.result) return; // Only allow logged-in users to like
+
+    const userId = user?.result?.googleId || user?.result?._id;
+    // Store the likes from the *prop* (the original backend state) for potential rollback
+    const originalLikes = Array.isArray(post.likes) ? [...post.likes] : [];
+
+    // Determine if the current user has liked based on the *local* 'likes' state
+    const currentUserHasLikedOptimistic = likes.includes(userId);
+
+    // Optimistically update the local 'likes' state
+    let newOptimisticLikes;
+    if (currentUserHasLikedOptimistic) {
+      newOptimisticLikes = likes.filter((id) => id !== userId); // Remove like
+    } else {
+      newOptimisticLikes = [...likes, userId]; // Add like
+    }
+    setLikes(newOptimisticLikes); // Instantly update the UI
+
+    try {
+      // Dispatch the action to update the backend and eventually Redux
+      await dispatch(likePost(post._id));
+      // No need to setLikes again here; the useEffect above handles prop updates from Redux
+    } catch (error) {
+      console.error("Error liking post:", error);
+      // Rollback: Revert local state to the original if the backend call fails
+      setLikes(originalLikes);
+      // Optional: Show an error message to the user (e.g., using a toast/snackbar)
+    }
+  };
 
   const userHasLiked =
     user?.result &&
@@ -69,16 +110,24 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
     );
 
   const renderLikes = () => {
-    const likesArray = Array.isArray(post.likes) ? post.likes : [];
+    // Use the local 'likes' state for rendering
+    const likesArray = Array.isArray(likes) ? likes : [];
     const likesCount = likesArray.length;
-    const IconComponent = userHasLiked ? ThumbUpAltIcon : ThumbUpAltOutlined;
+
+    const userId = user?.result?.googleId || user?.result?._id;
+    // Recalculate if the current user has liked based on the LOCAL 'likes' state
+    const currentUserHasLiked = user?.result && likesArray.includes(userId);
+
+    const IconComponent = currentUserHasLiked
+      ? ThumbUpAltIcon
+      : ThumbUpAltOutlined;
     let text =
       likesCount > 0
         ? `${likesCount} ${likesCount === 1 ? "Like" : "Likes"}`
         : "Like";
 
     if (user?.result) {
-      if (userHasLiked) {
+      if (currentUserHasLiked) {
         text =
           likesCount > 1
             ? `You and ${likesCount - 1} ${
@@ -87,6 +136,7 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
             : "You";
       }
     }
+
     return (
       <Box component="span" sx={postStyles.likeButtonTextContainer}>
         <IconComponent fontSize="small" sx={{ mr: 0.5 }} />
@@ -334,7 +384,14 @@ const Post = ({ post, setCurrentId, page, refreshPosts }) => {
             <span>
               <Button
                 size="small"
-                color={userHasLiked && isLoggedIn ? "secondary" : "primary"}
+                color={
+                  user?.result &&
+                  likes.includes(user.result.googleId || user.result._id) &&
+                  isLoggedIn
+                    ? "secondary"
+                    : "primary"
+                }
+                // color={userHasLiked && isLoggedIn ? "secondary" : "primary"}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleLikeClick(e);
