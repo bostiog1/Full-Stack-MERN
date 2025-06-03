@@ -12,8 +12,6 @@ import {
   COMMENT,
 } from "../constants/actionTypes";
 
-// Action Creators
-
 export const getPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
@@ -106,7 +104,6 @@ export const commentPost = (value, id) => async (dispatch) => {
 
     dispatch({ type: COMMENT, payload: data });
 
-    // return data.comments;
     return Array.isArray(data.comments) ? data.comments : [];
   } catch (error) {
     console.log(error);

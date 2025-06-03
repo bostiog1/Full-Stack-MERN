@@ -1,12 +1,10 @@
-// styles.js
-
 const homeStyles = {
   appBarSearch: {
     borderRadius: 4,
     marginBottom: "1rem",
     display: "flex",
     padding: "16px",
-    flexDirection: "column", 
+    flexDirection: "column",
   },
   pagination: {
     borderRadius: 4,
@@ -14,7 +12,7 @@ const homeStyles = {
     padding: "16px",
   },
   searchButton: {
-    marginTop: "10px", 
+    marginTop: "10px",
   },
 };
 
