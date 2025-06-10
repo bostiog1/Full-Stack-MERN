@@ -3,26 +3,6 @@ import { Paper, Typography, CircularProgress, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Container,
-  Grid,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Chip,
-} from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import ChatIcon from "@mui/icons-material/Chat";
-import CommentIcon from "@mui/icons-material/Comment";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbUpAltOutlined from "@mui/icons-material/ThumbUpAltOutlined";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Stack } from "@mui/material";
 
 import postStyles from "./styles";
 import { getPost } from "../../actions/posts";
@@ -60,14 +40,11 @@ const PostDetails = () => {
 
   const openRecommendedPost = (_id) => {
     navigate(`/posts/${_id}`);
-    // Optional: Dispatch getPost again to refresh details if navigating within PostDetails
-    // dispatch(getPost(_id)); // This might cause a re-render loop if not handled carefully
   };
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
       {/* Main Content - Two Columns */}
       <div style={{ display: "flex", gap: "20px", marginBottom: "40px" }}>
-        {/* Left Side - 60% */}
         <div style={{ flex: "0 0 60%" }}>
           <Typography
             variant="h3"
@@ -128,10 +105,10 @@ const PostDetails = () => {
             {moment(post.createdAt).fromNow()}
           </Typography>
 
-          {/* Realtime Chat */}
+          {/* Realtime Chat
           <Typography variant="body1" style={{ marginBottom: "16px" }}>
             <strong>Realtime Chat - coming soon!</strong>
-          </Typography>
+          </Typography> */}
 
           {/* Comments */}
           <CommentSection post={post} />

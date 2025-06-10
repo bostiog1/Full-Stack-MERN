@@ -170,7 +170,6 @@ export const Auth = () => {
     }
   };
 
-  // Loading state
   if (isAuth0Loading) {
     return (
       <Container component="main" maxWidth="xs" sx={{ py: 8 }}>
