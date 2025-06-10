@@ -110,3 +110,15 @@ export const commentPost = (value, id) => async (dispatch) => {
     return [];
   }
 };
+
+export const deleteComment = (postId, commentIndex) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteComment(postId, commentIndex); // Call to your API
+
+    // You might want to dispatch an action to update the Redux store
+    // For simplicity, we'll just return the updated comments array to the component
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

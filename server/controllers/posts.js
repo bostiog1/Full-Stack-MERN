@@ -1,6 +1,37 @@
 import mongoose from "mongoose";
 import PostMessage from "../models/postMessage.js";
 
+export const deleteComment = async (req, res) => {
+  const { id, commentIndex } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("No post with that id");
+
+  try {
+    const post = await PostMessage.findById(id);
+
+    if (!post) {
+      return res.status(404).send("Post not found.");
+    }
+
+    // Check if the comment index is valid
+    if (commentIndex < 0 || commentIndex >= post.comments.length) {
+      return res.status(400).send("Invalid comment index.");
+    }
+
+    // Remove the comment at the specified index
+    post.comments.splice(commentIndex, 1);
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
+      new: true,
+    });
+
+    res.json(updatedPost.comments); // Return the updated comments array
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export const getPosts = async (req, res) => {
   const { page } = req.query;
   try {

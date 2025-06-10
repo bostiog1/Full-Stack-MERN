@@ -14,6 +14,9 @@ API.interceptors.request.use((req) => {
 
 // const url = "https://full-stack-mern-966i.vercel.app/posts";
 
+export const deleteComment = (postId, commentIndex) =>
+  API.delete(`/posts/comment/${postId}/${commentIndex}`);
+
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 
 export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
