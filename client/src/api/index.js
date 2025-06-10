@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+// const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({
+  baseURL: "https://full-stack-mern-966i.vercel.app",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -11,8 +14,6 @@ API.interceptors.request.use((req) => {
 
   return req;
 });
-
-// const url = "https://full-stack-mern-966i.vercel.app/posts";
 
 export const deleteComment = (postId, commentIndex) =>
   API.delete(`/posts/comment/${postId}/${commentIndex}`);
