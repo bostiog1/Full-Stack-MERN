@@ -1,6 +1,6 @@
 # FullStack MERN Application
 
-Link: https://silver-daffodil-5a27f1.netlify.app/posts  -> in order to make it work you have to delete '/posts' after you clicked
+Link live project: https://silver-daffodil-5a27f1.netlify.app/posts  -> in order to make it work you have to delete '/posts' after you clicked
 
 ## Overview
 
