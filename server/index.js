@@ -39,8 +39,6 @@ app.use(
 app.use("/posts", postsRoutes);
 app.use("/user", userRoutes);
 
-// const CONNECTION_URL =
-// "mongodb+srv://teooboost:teooboost123@cluster0.sgd0sce.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
