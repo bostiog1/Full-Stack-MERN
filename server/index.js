@@ -13,10 +13,23 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(cors());
 // app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(
+//   cors({
+//     origin: [
+//       "https://silver-daffodil-5a27f1.netlify.app",
+//       "http://localhost:5173",
+//     ],
+//     credentials: true,
+//   })
+// );
+
+// app.use(cors({ origin: "*" })); // Remove in production!
+
+// TEMPORARY FIX - Allow all origins for testing
 app.use(
   cors({
-    origin: "https://silver-daffodil-5a27f1.netlify.app/posts",
-    credentials: true,
+    origin: "*", // This allows all origins - use this temporarily to test
+    credentials: false, // Set to false when using origin: "*"
   })
 );
 

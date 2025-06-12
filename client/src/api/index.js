@@ -2,7 +2,8 @@ import axios from "axios";
 
 // const API = axios.create({ baseURL: "http://localhost:5000" });
 const API = axios.create({
-  baseURL: "https://full-stack-mern-u5sq.vercel.app/posts",
+  baseURL: "https://full-stack-mern-u5sq.vercel.app",
+  // withCredentials: true,
 });
 
 API.interceptors.request.use((req) => {
@@ -11,9 +12,17 @@ API.interceptors.request.use((req) => {
       JSON.parse(localStorage.getItem("profile")).token
     }`;
   }
-
   return req;
 });
+
+// Add just this one line to see errors
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error("API Error:", error.response?.status, error.response?.data);
+    return Promise.reject(error);
+  }
+);
 
 export const deleteComment = (postId, commentIndex) =>
   API.delete(`/posts/comment/${postId}/${commentIndex}`);
@@ -27,6 +36,7 @@ export const fetchPostsBySearch = (searchQuery) =>
       searchQuery.tags
     }`
   );
+
 export const createPost = (newPost) => API.post("/posts", newPost);
 export const likePost = (id) => API.patch(`posts/${id}/likePost`);
 export const commentPost = (value, id) =>
