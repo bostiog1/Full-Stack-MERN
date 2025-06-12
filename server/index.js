@@ -28,8 +28,11 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // TEMPORARY FIX - Allow all origins for testing
 app.use(
   cors({
-    origin: "*", // This allows all origins - use this temporarily to test
-    credentials: false, // Set to false when using origin: "*"
+    origin: [
+      "https://silver-daffodil-5a27f1.netlify.app", // Your Netlify URL
+      "http://localhost:5173", // For local development
+    ],
+    credentials: true,
   })
 );
 
