@@ -1,5 +1,7 @@
 # FullStack MERN Application
 
+Link: https://silver-daffodil-5a27f1.netlify.app/posts  -> in order to make it work you have to delete '/posts' after you clicked
+
 ## Overview
 
 This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack.
