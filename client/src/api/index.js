@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const API = axios.create({ baseURL: "http://localhost:5000" });
 const API = axios.create({
-  baseURL: "https://full-stack-mern-7no2.vercel.app",
+  baseURL: "https://full-stack-mern-y75x.vercel.app",
   // withCredentials: true,
 });
 
