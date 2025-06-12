@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(cors({ origin: "http://localhost:5173" }));
 app.use(
   cors({
-    origin: "https://darling-khapse-916cff.netlify.app/posts",
-    // credentials: true,
+    origin: "https://darling-khapse-916cff.netlify.app",
+    credentials: true,
   })
 );
 
